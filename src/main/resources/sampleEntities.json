@@ -1,0 +1,39 @@
+[
+	{
+		"type": "SERVER",
+		"vendor": "Quanta",
+		"name": "S210-X12RS",
+		"version": "v2"
+	},
+	{
+		"type": "VC",
+		"vendor": "VMware",
+		"name": "VC",
+		"version": "6.5.0-789",
+		"deps": [
+			"SERVER"
+		],
+		"upgradeFrom": [
+			"VCVMwareVC6.5.0-123",
+			"VCVMwareVC6.5.0-234",
+			"VCVMwareVC6.5.0-567",
+			"VCVMwareVC6.5.0-678"
+		]
+	},
+	{
+		"type": "VC",
+		"vendor": "VMware",
+		"name": "VC",
+		"version": "6.7.0-789",
+		"deps": [
+			"SERVER"
+		],
+		"upgradeFrom": [
+			"VCVMwareVC6.5.0-123",
+			"VCVMwareVC6.5.0-234",
+			"VCVMwareVC6.5.0-567",
+			"VCVMwareVC6.5.0-678",
+			"VCVMwareVC6.7.0-789"
+		]
+	}
+]
