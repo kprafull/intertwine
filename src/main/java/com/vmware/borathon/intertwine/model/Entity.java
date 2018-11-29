@@ -11,6 +11,8 @@ import java.util.List;
 @NoArgsConstructor
 public class Entity {
     private Type type;
+    private String vendor;
+    private String name;
     private String version;
     private List<Type> deps;
     private List<String> upgradeFrom;
