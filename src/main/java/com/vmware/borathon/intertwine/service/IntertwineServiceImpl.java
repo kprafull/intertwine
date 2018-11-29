@@ -37,6 +37,11 @@ public class IntertwineServiceImpl implements IntertwineService {
     }
 
     @Override
+    public void addWorkingSet(WorkingSet workingSet) {
+        
+    }
+
+    @Override
     public Entity removeEntity(String id) {
         return null;
     }
