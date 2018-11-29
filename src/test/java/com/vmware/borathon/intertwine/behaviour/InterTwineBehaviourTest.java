@@ -34,7 +34,8 @@ public class InterTwineBehaviourTest {
 		WorkingSet destination = mapper.readValue(new File("./src/test/resources/destination_compatibility_test1.json"), WorkingSet.class);
 
 		List<Entity> entities = intertwine.findApplicableUpgrade(start, destination);
-		assertTrue(entities.size()>0);
+		assertTrue(entities.size()==1);
+		assertTrue(entities.get(0).getVersion().equals("6.7.0-789"));
 	}
 
 	// find available upgrade for a given environment
@@ -50,6 +51,36 @@ public class InterTwineBehaviourTest {
 
 		List<Entity> entities = intertwine.findApplicableUpgrade(start, destination);
 		assertTrue(entities.size() == 0);
+	}
+	
+	// find available upgrade for a given environment
+	// where destination working set is not supported
+	@Test
+	public void applicableUpgradeDestinationSetNotAvailable() throws Exception {
+
+		ObjectMapper mapper = new ObjectMapper();
+		WorkingSet start = mapper.readValue(new File("./src/test/resources/start_compatibility_test3.json"),
+				WorkingSet.class);
+		WorkingSet destination = mapper.readValue(new File("./src/test/resources/destination_compatibility_test3.json"),
+				WorkingSet.class);
+
+		List<Entity> entities = intertwine.findApplicableUpgrade(start, destination);
+		assertTrue(entities.size() == 0);
+	}
+	
+	// find available upgrade for a given environment
+	// where destination working set is upgraded in multiple hops
+	@Test
+	public void applicableUpgradeMultiHopDestinationSetAvailable() throws Exception {
+
+		ObjectMapper mapper = new ObjectMapper();
+		WorkingSet start = mapper.readValue(new File("./src/test/resources/start_compatibility_test3.json"),
+				WorkingSet.class);
+		WorkingSet destination = mapper.readValue(new File("./src/test/resources/destination_compatibility_test3.json"),
+				WorkingSet.class);
+
+		List<Entity> entities = intertwine.findApplicableUpgrade(start, destination);
+		assertTrue(entities.size() == 2);
 	}
 
 }

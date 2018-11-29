@@ -9,7 +9,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.cglib.core.CollectionUtils;
 import org.springframework.stereotype.Component;
@@ -87,11 +89,16 @@ public class IntertwineServiceImpl implements IntertwineService {
 		destEntities.removeAll(startEntities);
 
 		for (String entityId : destEntities) {
-			
+
 			if (!Collections.disjoint(start.getEntityIds(), getEntity(entityId).getUpgradeFrom())) {
 				applicableEntityIds.add(entityId);
-				}
-			
+			} else {
+				Map<String, List<String>> entityUpgradeMap = new HashMap<String, List<String>>();
+
+				createEnityUpgradeMap(start.getEntityIds().get(1), entityId, entityUpgradeMap);
+				applicableEntityIds.addAll(entityUpgradeMap.keySet());
+
+			}
 
 		}
 
@@ -109,7 +116,7 @@ public class IntertwineServiceImpl implements IntertwineService {
 		//
 		// }
 		// }
-		return convertListEntityIDtoEntity(destEntities);
+		return convertListEntityIDtoEntity(applicableEntityIds);
 	}
 
 	private List<Entity> convertListEntityIDtoEntity(List<String> entityIds) throws Exception {
@@ -120,4 +127,35 @@ public class IntertwineServiceImpl implements IntertwineService {
 		}
 		return entities;
 	}
+
+	private void createEnityUpgradeMap(String current, String destination, Map<String, List<String>> entityUpgradeMap)
+			throws Exception {
+
+		// I1---- 1.(6.0.0-789,6.7.0-789), 2. upgradesApplicableForDestinationEnity=
+		// VCVMwareVC6.5.0-123,VCVMwareVC6.5.0-234,VCVMwareVC6.5.0-567,VCVMwareVC6.5.0-678,VCVMwareVC6.5.0-789
+		// I2---(6.0.0-789,6.5.0-789) 2. upgradesApplicableForDestinationEnity =
+		// [VCVMwareVC6.5.0-123, VCVMwareVC6.5.0-234, VCVMwareVC6.5.0-567,
+		// VCVMwareVC6.5.0-678, VCVMwareVC6.5.0-789]
+		Entity upgradeToEntity = getEntity(destination);
+		List<String> upgradesApplicableForDestinationEnity = null;
+		if (upgradeToEntity != null)
+			upgradesApplicableForDestinationEnity = upgradeToEntity.getUpgradeFrom();
+
+		if (upgradeToEntity == null || upgradesApplicableForDestinationEnity == null)
+			return;
+
+		if (upgradesApplicableForDestinationEnity.contains(current)) {
+			// I1 -- noop
+			// I2 -- 6.0.0-789, (6.0.0-789,6.5.0-123,6.5.0-456)
+			entityUpgradeMap.put(current, upgradesApplicableForDestinationEnity);
+		} else {
+			for (String upgradeTo : upgradesApplicableForDestinationEnity) {
+				// I1 -- 6.0.0--789,6.5.0-789
+				// I2 -- noop
+				createEnityUpgradeMap(current, upgradeTo, entityUpgradeMap);
+			}
+		}
+
+	}
+
 }
