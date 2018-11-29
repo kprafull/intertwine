@@ -17,6 +17,30 @@
 		"type": "VC",
 		"vendor": "VMware",
 		"name": "VC",
+		"version": "6.2.0-789",
+		"deps": [
+			"SERVER"
+		],
+		"upgradeFrom": [
+			"VCVMwareVC6.0.0-789"
+		]
+	},
+	{
+		"type": "VC",
+		"vendor": "VMware",
+		"name": "VC",
+		"version": "6.3.0-789",
+		"deps": [
+			"SERVER"
+		],
+		"upgradeFrom": [
+			"VCVMwareVC6.2.0-789"
+		]
+	},
+	{
+		"type": "VC",
+		"vendor": "VMware",
+		"name": "VC",
 		"version": "6.5.0-789",
 		"deps": [
 			"SERVER"
@@ -26,7 +50,7 @@
 			"VCVMwareVC6.5.0-234",
 			"VCVMwareVC6.5.0-567",
 			"VCVMwareVC6.5.0-678",
-			"VCVMwareVC6.0.0-789"
+			"VCVMwareVC6.3.0-789"
 		]
 	},
 	{

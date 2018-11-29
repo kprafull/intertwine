@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
@@ -80,7 +81,13 @@ public class InterTwineBehaviourTest {
 				WorkingSet.class);
 
 		List<Entity> entities = intertwine.findApplicableUpgrade(start, destination);
-		assertTrue(entities.size() == 2);
+		assertTrue(entities.size() == 4);
+		String[] arrMatchedEntities = {"VCVMwareVC6.0.0-789","VCVMwareVC6.2.0-789","VCVMwareVC6.3.0-789","VCVMwareVC6.5.0-789"};
+		List<String> listMatchedEntities = new ArrayList<String>(Arrays.asList(arrMatchedEntities));
+		for (Entity entity : entities) {
+			listMatchedEntities.remove(entity.getId());
+		}
+		assertTrue(listMatchedEntities.size()==0);
 	}
 
 }
