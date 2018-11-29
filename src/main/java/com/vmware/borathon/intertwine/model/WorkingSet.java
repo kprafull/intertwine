@@ -10,5 +10,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class WorkingSet {
+    private String id;
     private List<Entity> entities;
 }

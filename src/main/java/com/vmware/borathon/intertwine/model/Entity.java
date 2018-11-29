@@ -10,6 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Entity {
+    private String id;
     private Type type;
     private String vendor;
     private String name;
