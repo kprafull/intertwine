@@ -10,5 +10,126 @@
 			"SERVERQuantaS210-X12RSv2",
 			"VCVMwareVC6.7.0-789"
 		]
+	},
+	{
+		"entityIds": [
+			"SERVERQuantaS210-X12RSv2",
+			"VCVMwareVC6.0.0-123",
+			"HYPERVISORVMwareESX6.0.0-12345",
+			"NETWORKVMwareNSX4.3.2-34580"
+		]
+	},
+	{
+		"entityIds": [
+			"SERVERQuantaS210-X12RSv2",
+			"VCVMwareVC6.0.0-123",
+			"HYPERVISORVMwareESX6.0.0-12345",
+			"NETWORKVMwareNSX4.3.1-34568"
+		]
+	},
+	{
+		"entityIds": [
+			"SERVERQuantaS210-X12RSv2",
+			"VCVMwareVC6.0.0-123",
+			"HYPERVISORVMwareESX6.0.0-12345",
+			"NETWORKVMwareNSX4.3.1-34569"
+		]
+	},
+	{
+		"entityIds": [
+			"SERVERQuantaS210-X12RSv2",
+			"VCVMwareVC6.5.0-234",
+			"HYPERVISORVMwareESX6.0.0-12345",
+			"NETWORKVMwareNSX4.3.1-34569"
+		]
+	},
+	{
+		"entityIds": [
+			"SERVERQuantaS210-X12RSv2",
+			"VCVMwareVC6.5.0-234",
+			"HYPERVISORVMwareESX6.5.0-12346",
+			"NETWORKVMwareNSX4.3.1-34569"
+		]
+	},
+	{
+		"entityIds": [
+			"SERVERQuantaS210-X12RSv2",
+			"VCVMwareVC6.5.0-234",
+			"HYPERVISORVMwareESX6.5.0-12347",
+			"NETWORKVMwareNSX4.3.1-34569"
+		]
+	},
+	{
+		"entityIds": [
+			"SERVERQuantaS210-X12RSv2",
+			"VCVMwareVC6.5.0-234",
+			"HYPERVISORVMwareESX6.5.0-12348",
+			"NETWORKVMwareNSX4.3.1-34569"
+		]
+	},
+	{
+		"entityIds": [
+			"SERVERQuantaS210-X12RSv2",
+			"VCVMwareVC6.5.0-234",
+			"HYPERVISORVMwareESX6.5.0-12349",
+			"NETWORKVMwareNSX4.3.1-34569"
+		]
+	},
+	{
+		"entityIds": [
+			"SERVERQuantaS210-X12RSv2",
+			"VCVMwareVC6.5.0-234",
+			"HYPERVISORVMwareESX6.5.0-12348",
+			"NETWORKVMwareNSX4.3.1-34570"
+		]
+	},
+	{
+		"entityIds": [
+			"SERVERQuantaS210-X12RSv2",
+			"VCVMwareVC6.5.0-234",
+			"HYPERVISORVMwareESX6.5.0-12349",
+			"NETWORKVMwareNSX4.3.1-34570"
+		]
+	},
+	{
+		"entityIds": [
+			"SERVERQuantaS210-X12RSv2",
+			"VCVMwareVC6.5.0-234",
+			"HYPERVISORVMwareESX6.5.0-12349",
+			"NETWORKVMwareNSX4.3.2-34580"
+		]
+	},
+	{
+		"entityIds": [
+			"SERVERQuantaS210-X12RSv2",
+			"VCVMwareVC6.7.0-789",
+			"HYPERVISORVMwareESX6.5.0-12348",
+			"NETWORKVMwareNSX4.3.2-34580"
+		]
+	},
+	{
+		"entityIds": [
+			"SERVERQuantaS210-X12RSv2",
+			"VCVMwareVC6.7.0-789",
+			"HYPERVISORVMwareESX6.5.0-12349",
+			"NETWORKVMwareNSX4.3.2-34580"
+		]
+	},
+	{
+		"entityIds": [
+			"SERVERQuantaS210-X12RSv2",
+			"VCVMwareVC6.7.0-789",
+			"HYPERVISORVMwareESX6.7.0-23456",
+			"NETWORKVMwareNSX4.3.2-34580"
+		]
+	},
+	{
+		"entityIds": [
+			"SERVERQuantaS210-X12RSv2",
+			"VCVMwareVC6.7.0-789",
+			"HYPERVISORVMwareESX6.7.0-23456",
+			"NETWORKVMwareNSX4.3.3-34590"
+		]
 	}
+
 ]

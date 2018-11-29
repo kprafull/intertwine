@@ -1,32 +1,57 @@
-[{
+[
+	{
 		"type": "SERVER",
 		"vendor": "Quanta",
 		"name": "S210-X12RS",
 		"version": "v2"
 	},
 	{
+		"type": "SERVER",
+		"vendor": "QCT",
+		"name": "D51B",
+		"version": "D51B"
+	},
+	{
+		"type": "SERVER",
+		"vendor": "DELL",
+		"name": "R360",
+		"version": "R360"
+	},
+	{
+		"type": "SERVER",
+		"vendor": "DELL",
+		"name": "R730",
+		"version": "R730"
+	},
+	{
+		"type": "SERVER",
+		"vendor": "HP",
+		"name": "DL360",
+		"version": "DL360"
+	},
+	{
 		"type": "VC",
 		"vendor": "VMware",
 		"name": "VC",
-		"version": "6.0.0-789",
-		"deps": [
-			"SERVER"
+		"version": "6.0.0-123",
+	},
+	{
+		"type": "VC",
+		"vendor": "VMware",
+		"name": "VC",
+		"version": "6.5.0-234",
+		"upgradeFrom": [
+			"VCVMwareVC6.0.0-123",
 		]
 	},
 	{
 		"type": "VC",
 		"vendor": "VMware",
 		"name": "VC",
-		"version": "6.5.0-789",
-		"deps": [
-			"SERVER"
-		],
+		"version": "6.7.0-567",
 		"upgradeFrom": [
-			"VCVMwareVC6.5.0-123",
-			"VCVMwareVC6.5.0-234",
-			"VCVMwareVC6.5.0-567",
-			"VCVMwareVC6.5.0-678",
-			"VCVMwareVC6.0.0-789"
+			"VCVMwareVC6.0.0-123",
+			"VCVMwareVC6.5.0-234"
 		]
 	},
 	{
@@ -34,15 +59,151 @@
 		"vendor": "VMware",
 		"name": "VC",
 		"version": "6.7.0-789",
+		"upgradeFrom": [
+			"VCVMwareVC6.5.0-123",
+			"VCVMwareVC6.5.0-234",
+			"VCVMwareVC6.5.0-567"
+		]
+	},
+	{
+		"type": "HYPERVISOR",
+		"vendor": "VMware",
+		"name": "ESX",
+		"version": "6.0.0-12345",
+		"deps": [
+			"SERVER"
+		]
+	},
+	{
+		"type": "HYPERVISOR",
+		"vendor": "VMware",
+		"name": "ESX",
+		"version": "6.5.0-12346",
 		"deps": [
 			"SERVER"
 		],
 		"upgradeFrom": [
-			"VCVMwareVC6.5.0-123",
-			"VCVMwareVC6.5.0-234",
-			"VCVMwareVC6.5.0-567",
-			"VCVMwareVC6.5.0-678",
-			"VCVMwareVC6.5.0-789"
+			"HYPERVISORVMwareESX6.0.0-12345"
+		]
+	},
+	{
+		"type": "HYPERVISOR",
+		"vendor": "VMware",
+		"name": "ESX",
+		"version": "6.5.0-12347",
+		"deps": [
+			"SERVER"
+		],
+		"upgradeFrom": [
+			"HYPERVISORVMwareESX6.0.0-12345",
+			"HYPERVISORVMwareESX6.5.0-12346"
+		]
+	},
+	{
+		"type": "HYPERVISOR",
+		"vendor": "VMware",
+		"name": "ESX",
+		"version": "6.5.0-12348",
+		"deps": [
+			"SERVER"
+		],
+		"upgradeFrom": [
+			"HYPERVISORVMwareESX6.0.0-12345",
+			"HYPERVISORVMwareESX6.5.0-12346",
+			"HYPERVISORVMwareESX6.5.0-12347"
+		]
+	},
+	{
+		"type": "HYPERVISOR",
+		"vendor": "VMware",
+		"name": "ESX",
+		"version": "6.5.0-12349",
+		"deps": [
+			"SERVER"
+		],
+		"upgradeFrom": [
+			"HYPERVISORVMwareESX6.0.0-12345",
+			"HYPERVISORVMwareESX6.5.0-12346",
+			"HYPERVISORVMwareESX6.5.0-12347",
+			"HYPERVISORVMwareESX6.5.0-12348"
+		]
+	},
+	{
+		"type": "HYPERVISOR",
+		"vendor": "VMware",
+		"name": "ESX",
+		"version": "6.7.0-23456",
+		"deps": [
+			"SERVER"
+		],
+		"upgradeFrom": [
+			"HYPERVISORVMwareESX6.5.0-12346",
+			"HYPERVISORVMwareESX6.5.0-12347",
+			"HYPERVISORVMwareESX6.5.0-12348",
+			"HYPERVISORVMwareESX6.0.0-12349"
+		]
+	},
+	{
+		"type": "NETWORK",
+		"vendor": "VMware",
+		"name": "NSX",
+		"version": "4.3.1-34568",
+		"deps": [
+			"HYPERVISOR"
+		]
+	},
+	{
+		"type": "NETWORK",
+		"vendor": "VMware",
+		"name": "NSX",
+		"version": "4.3.1-34569",
+		"deps": [
+			"HYPERVISOR"
+		],
+		"upgradeFrom": [
+			"NETWORKVMwareNSX4.3.1-34568"
+		]
+	},
+	{
+		"type": "NETWORK",
+		"vendor": "VMware",
+		"name": "NSX",
+		"version": "4.3.1-34570",
+		"deps": [
+			"HYPERVISOR"
+		],
+		"upgradeFrom": [
+			"NETWORKVMwareNSX4.3.1-34568",
+			"NETWORKVMwareNSX4.3.1-34569"
+		]
+	},
+	{
+		"type": "NETWORK",
+		"vendor": "VMware",
+		"name": "NSX",
+		"version": "4.3.2-34580",
+		"deps": [
+			"HYPERVISOR"
+		],
+		"upgradeFrom": [
+			"NETWORKVMwareNSX4.3.1-34568",
+			"NETWORKVMwareNSX4.3.1-34569",
+			"NETWORKVMwareNSX4.3.1-34570"
+		]
+	},
+	{
+		"type": "NETWORK",
+		"vendor": "VMware",
+		"name": "NSX",
+		"version": "4.3.3-34590",
+		"deps": [
+			"HYPERVISOR"
+		],
+		"upgradeFrom": [
+			"NETWORKVMwareNSX4.3.1-34568",
+			"NETWORKVMwareNSX4.3.1-34569",
+			"NETWORKVMwareNSX4.3.1-34570",
+			"NETWORKVMwareNSX4.3.2-34580",
 		]
 	}
 ]
