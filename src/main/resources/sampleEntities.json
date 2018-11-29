@@ -33,7 +33,7 @@
 		"type": "VC",
 		"vendor": "VMware",
 		"name": "VC",
-		"version": "6.0.0-123",
+		"version": "6.0.0-123"
 	},
 	{
 		"type": "VC",
@@ -41,18 +41,60 @@
 		"name": "VC",
 		"version": "6.5.0-234",
 		"upgradeFrom": [
-			"VCVMwareVC6.0.0-123",
+			"VCVMwareVC6.0.0-123"
 		]
 	},
 	{
 		"type": "VC",
 		"vendor": "VMware",
 		"name": "VC",
-		"version": "6.7.0-567",
+		"version": "6.0.0-235",
 		"upgradeFrom": [
-			"VCVMwareVC6.0.0-123",
-			"VCVMwareVC6.5.0-234"
+			"VCVMwareVC6.0.0-123"
 		]
+	},
+	{
+		"type": "VC",
+		"vendor": "VMware",
+		"name": "VC",
+		"version": "6.0.0-789"
+	},
+	{
+		"type": "VC",
+		"vendor": "VMware",
+		"name": "VC",
+		"version": "6.2.0-789",
+		"upgradeFrom": [
+			"VCVMwareVC6.0.0-789"
+		]
+	},
+	{
+		"type": "VC",
+		"vendor": "VMware",
+		"name": "VC",
+		"version": "6.3.0-789",
+		"upgradeFrom": [
+			"VCVMwareVC6.2.0-789"
+		]
+	},
+	{
+		"type": "VC",
+		"vendor": "VMware",
+		"name": "VC",
+		"version": "6.5.0-789",
+		"upgradeFrom": [
+			"VCVMwareVC6.5.0-123",
+			"VCVMwareVC6.5.0-234",
+			"VCVMwareVC6.5.0-567",
+			"VCVMwareVC6.5.0-678",
+			"VCVMwareVC6.3.0-789"
+		]
+	},
+	{
+		"type": "VC",
+		"vendor": "VMware",
+		"name": "VC",
+		"version": "6.5.0-999"
 	},
 	{
 		"type": "VC",
@@ -62,7 +104,8 @@
 		"upgradeFrom": [
 			"VCVMwareVC6.5.0-123",
 			"VCVMwareVC6.5.0-234",
-			"VCVMwareVC6.5.0-567"
+			"VCVMwareVC6.5.0-567",
+			"VCVMwareVC6.5.0-789"
 		]
 	},
 	{
@@ -203,7 +246,7 @@
 			"NETWORKVMwareNSX4.3.1-34568",
 			"NETWORKVMwareNSX4.3.1-34569",
 			"NETWORKVMwareNSX4.3.1-34570",
-			"NETWORKVMwareNSX4.3.2-34580",
+			"NETWORKVMwareNSX4.3.2-34580"
 		]
 	}
 ]

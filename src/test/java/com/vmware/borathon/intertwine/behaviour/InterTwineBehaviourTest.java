@@ -1,9 +1,11 @@
 package com.vmware.borathon.intertwine.behaviour;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
@@ -23,18 +25,20 @@ public class InterTwineBehaviourTest {
 
 	@Autowired
 	IntertwineService intertwine;
-	
-	//find available upgrade for a given environment
-	//where entity is upgradable till given destination
+
+	// find available upgrade for a given environment
+	// where entity is upgradable till given destination
 	@Test
-	public void applicableUpgradeOneHopDestinationAvailable() throws Exception{
-		
+	public void applicableUpgradeOneHopDestinationAvailable() throws Exception {
+
 		ObjectMapper mapper = new ObjectMapper();
-		WorkingSet start = mapper.readValue(new File("./src/test/resources/start_compatibility_test1.json"), WorkingSet.class);
-		WorkingSet destination = mapper.readValue(new File("./src/test/resources/destination_compatibility_test1.json"), WorkingSet.class);
+		WorkingSet start = mapper.readValue(new File("./src/test/resources/start_compatibility_test1.json"),
+				WorkingSet.class);
+		WorkingSet destination = mapper.readValue(new File("./src/test/resources/destination_compatibility_test1.json"),
+				WorkingSet.class);
 
 		List<Entity> entities = intertwine.findApplicableUpgrade(start, destination);
-		assertTrue(entities.size()==1);
+		assertEquals(1,entities.size());
 		assertTrue(entities.get(0).getVersion().equals("6.7.0-789"));
 	}
 
@@ -50,9 +54,10 @@ public class InterTwineBehaviourTest {
 				WorkingSet.class);
 
 		List<Entity> entities = intertwine.findApplicableUpgrade(start, destination);
-		assertTrue(entities.size() == 0);
+		assertTrue(entities.size() == 1);
+		assertTrue(entities.get(0).getId().contains("VCVMwareVC6.5.0-999"));
 	}
-	
+
 	// find available upgrade for a given environment
 	// where destination working set is not supported
 	@Test
@@ -67,20 +72,43 @@ public class InterTwineBehaviourTest {
 		List<Entity> entities = intertwine.findApplicableUpgrade(start, destination);
 		assertTrue(entities.size() == 0);
 	}
-	
+
 	// find available upgrade for a given environment
 	// where destination working set is upgraded in multiple hops
 	@Test
 	public void applicableUpgradeMultiHopDestinationSetAvailable() throws Exception {
 
 		ObjectMapper mapper = new ObjectMapper();
-		WorkingSet start = mapper.readValue(new File("./src/test/resources/start_compatibility_test3.json"),
+		WorkingSet start = mapper.readValue(new File("./src/test/resources/start_compatibility_test4.json"),
 				WorkingSet.class);
-		WorkingSet destination = mapper.readValue(new File("./src/test/resources/destination_compatibility_test3.json"),
+		WorkingSet destination = mapper.readValue(new File("./src/test/resources/destination_compatibility_test4.json"),
 				WorkingSet.class);
 
 		List<Entity> entities = intertwine.findApplicableUpgrade(start, destination);
-		assertTrue(entities.size() == 2);
+		assertEquals(4, entities.size());
+		String[] arrMatchedEntities = { "VCVMwareVC6.0.0-789", "VCVMwareVC6.2.0-789", "VCVMwareVC6.3.0-789",
+				"VCVMwareVC6.5.0-789" };
+		List<String> listMatchedEntities = new ArrayList<String>(Arrays.asList(arrMatchedEntities));
+		for (Entity entity : entities) {
+			listMatchedEntities.remove(entity.getId());
+		}
+		assertTrue(listMatchedEntities.size() == 0);
+	}
+
+	// find available upgrade for a given environment
+	// where destination working set is not upgraded in multiple hops
+	@Test
+	public void applicableUpgradeMultiHopDestinationSetNotAvailable() throws Exception {
+
+		ObjectMapper mapper = new ObjectMapper();
+		WorkingSet start = mapper.readValue(new File("./src/test/resources/start_compatibility_test5.json"),
+				WorkingSet.class);
+		WorkingSet destination = mapper.readValue(new File("./src/test/resources/destination_compatibility_test5.json"),
+				WorkingSet.class);
+
+		List<Entity> entities = intertwine.findApplicableUpgrade(start, destination);
+		assertTrue(entities.size() == 1);
+		assertTrue(entities.get(0).getId().contains("VCVMwareVC6.0.0-235"));
 	}
 
 }

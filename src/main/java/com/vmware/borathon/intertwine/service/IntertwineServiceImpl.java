@@ -10,8 +10,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.cglib.core.CollectionUtils;
 import org.springframework.stereotype.Component;
@@ -82,40 +84,26 @@ public class IntertwineServiceImpl implements IntertwineService {
 		if (getWorkingSet(destination.getId()) == null)
 			return new ArrayList<Entity>();
 
-		List<String> startEntities = start.getEntityIds();
-		List<String> destEntities = destination.getEntityIds();
+		List<String> destEntities = new ArrayList<String>(destination.getEntityIds());
 
 		// find delta of entities between two sets
-		destEntities.removeAll(startEntities);
+		destEntities.removeAll(start.getEntityIds());
 
 		for (String entityId : destEntities) {
 
 			if (!Collections.disjoint(start.getEntityIds(), getEntity(entityId).getUpgradeFrom())) {
 				applicableEntityIds.add(entityId);
 			} else {
-				Map<String, List<String>> entityUpgradeMap = new HashMap<String, List<String>>();
+				Set<String> orderedEntityUpgradeList = new HashSet<String>();
+				orderedEntityUpgradeList.add(start.getEntityIds().get(1));
 
-				createEnityUpgradeMap(start.getEntityIds().get(1), entityId, entityUpgradeMap);
-				applicableEntityIds.addAll(entityUpgradeMap.keySet());
+				createEnityUpgradeMap(start.getEntityIds().get(1), entityId, orderedEntityUpgradeList);
+				
+				applicableEntityIds.addAll(orderedEntityUpgradeList);
 
 			}
 
 		}
-
-		// // for each entity find applicable upgrade
-		// for (Entity entity : destEntities) {
-		// // get entity
-		// // is entity update applicable to start entity
-		// // yes
-		// // check working set applicable, add this entity to return entity
-		// // no
-		// // is this a stepping stone upgrade
-		// // yes, recurse for stepping stone upgrade....
-		//
-		// if (!Collections.disjoint(entity.getUpgradeFrom(), startEntities)) {
-		//
-		// }
-		// }
 		return convertListEntityIDtoEntity(applicableEntityIds);
 	}
 
@@ -128,7 +116,7 @@ public class IntertwineServiceImpl implements IntertwineService {
 		return entities;
 	}
 
-	private void createEnityUpgradeMap(String current, String destination, Map<String, List<String>> entityUpgradeMap)
+	private void createEnityUpgradeMap(String current, String destination, Set<String> orderedEntityUpgradeList)
 			throws Exception {
 
 		// I1---- 1.(6.0.0-789,6.7.0-789), 2. upgradesApplicableForDestinationEnity=
@@ -147,12 +135,16 @@ public class IntertwineServiceImpl implements IntertwineService {
 		if (upgradesApplicableForDestinationEnity.contains(current)) {
 			// I1 -- noop
 			// I2 -- 6.0.0-789, (6.0.0-789,6.5.0-123,6.5.0-456)
-			entityUpgradeMap.put(current, upgradesApplicableForDestinationEnity);
+			orderedEntityUpgradeList.add(current);
+			orderedEntityUpgradeList.add(destination);
 		} else {
 			for (String upgradeTo : upgradesApplicableForDestinationEnity) {
 				// I1 -- 6.0.0--789,6.5.0-789
 				// I2 -- noop
-				createEnityUpgradeMap(current, upgradeTo, entityUpgradeMap);
+				int initSize = orderedEntityUpgradeList.size();
+				createEnityUpgradeMap(current, upgradeTo, orderedEntityUpgradeList);
+				if(orderedEntityUpgradeList.size()>initSize)
+					orderedEntityUpgradeList.add(upgradeTo);
 			}
 		}
 
