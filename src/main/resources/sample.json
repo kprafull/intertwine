@@ -1,20 +1,32 @@
 [
-  [
-    {
-      "type": "server",
-      "vendor": "Quanta",
-      "name": "S210-X12RS",
-      "version": "v2",
-      "deps": null,
-      "upgradeFrom": null
-    },
-    {
-      "type": "VC",
-      "vendor": "VMware",
-      "name": "VMware",
-      "version": "6.5.0-789",
-      "deps": ["server"],
-      "upgradeFrom": ["6.5.0-123", "6.5.0-234", "6.5.0-567", "6.5.0-678"]
-    }
-  ]
+  {
+    "id": "123"
+    "entities": [
+      {
+        "id": "234"
+        "type": "server",
+        "vendor": "Quanta",
+        "name": "S210-X12RS",
+        "version": "v2",
+        "deps": null,
+        "upgradeFrom": null
+      },
+      {
+        "id": "456"
+        "type": "VC",
+        "vendor": "VMware",
+        "name": "VMware",
+        "version": "6.5.0-789",
+        "deps": [
+          "server"
+        ],
+        "upgradeFrom": [
+          "6.5.0-123",
+          "6.5.0-234",
+          "6.5.0-567",
+          "6.5.0-678"
+        ]
+      }
+    ]
+  }
 ]
