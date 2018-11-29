@@ -19,7 +19,7 @@ import com.vmware.borathon.intertwine.service.IntertwineService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class WorkingSetBehaviourTest {
+public class InterTwineBehaviourTest {
 
 	@Autowired
 	IntertwineService intertwine;
@@ -27,7 +27,7 @@ public class WorkingSetBehaviourTest {
 	//find available upgrade for a given environment
 	//where entity is upgradable till given destination
 	@Test
-	public void findApplicableUpgradeDestination_test1() throws Exception{
+	public void applicableUpgradeOneHopDestinationAvailable() throws Exception{
 		
 		ObjectMapper mapper = new ObjectMapper();
 		WorkingSet start = mapper.readValue(new File("./src/test/resources/start_compatibility_test1.json"), WorkingSet.class);
@@ -40,7 +40,7 @@ public class WorkingSetBehaviourTest {
 	// find available upgrade for a given environment
 	// where entity is not upgradable till given destination
 	@Test
-	public void findApplicableUpgradeDestination_test2() throws Exception {
+	public void applicableUpgradeOneHopDestinationNotAvailable() throws Exception {
 
 		ObjectMapper mapper = new ObjectMapper();
 		WorkingSet start = mapper.readValue(new File("./src/test/resources/start_compatibility_test2.json"),
