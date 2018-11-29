@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -26,7 +27,6 @@ public class IntertwineController {
 
     @RequestMapping(value = "/working-sets", method = RequestMethod.GET)
 	public ResponseEntity<Object> getAllWorkingSets() {
-		// TODO: call service
 		try {
 			return new ResponseEntity<>(intertwine.getAllWorkingSets(), HttpStatus.OK);
 		} catch (Exception e) {
@@ -55,5 +55,16 @@ public class IntertwineController {
         //ws.setEntities(entities);
 
         return new ResponseEntity<>("123", HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/find-upgrade", method = RequestMethod.POST)
+    public ResponseEntity<List<Entity>> findApplicableUpgrade(@RequestParam String startWorkingSet,@RequestParam String endWorkingSet) throws Exception {
+        try {
+            WorkingSet sws = intertwine.getWorkingSet(startWorkingSet);
+            WorkingSet ews = intertwine.getWorkingSet(endWorkingSet);
+            return new ResponseEntity<>(intertwine.findApplicableUpgrade(sws, ews), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
